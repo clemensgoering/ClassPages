@@ -1,0 +1,26 @@
+# OS / editor
+Thumbs.db
+.DS_Store
+.vscode/
+.idea/
+
+# Build output and packager artefacts
+/.release/
+*.zip
+/ClassPages/Media/*.psd
+
+# Local scratch and WoW saved variables copied for analysis
+/scratch/
+/WTF/
+*.lua.bak
+
+# Assistant instructions and internal working notes: kept on disk, not part of the public repository
+CLAUDE.md
+.claude/
+/docs/05-WETTBEWERB.md
+/docs/06-ERKENNTNISSE-FUER-GOLDWEAVER.md
+/docs/08-CODEX-PROMPT-ICON.md
+/docs/09-ENTWICKLUNGSLOG.md
+/docs/10-PROJECT-PAGE.md
+/docs/11-VEROEFFENTLICHUNG.md
+/tools/assets/brand/icon_preview_32.png

@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ClassPages Mockups</title>
+<style>
+:root{
+  --bg:#0e0c0a; --bar:#0b0907; --plate:#17130f; --row:#13100c; --line:#3a2d1c; --edge:#6b5230;
+  --gold:#ffd100; --text:#ece6da; --dim:#9b9283; --green:#5fd35f; --yellow:#ffe14d; --red:#ff6a4c;
+  --hunter:#aad372; --blue:#5aa9ff;
+}
+*{box-sizing:border-box}
+body{margin:0;background:#1a1612;font:13px/1.35 "Segoe UI",Arial,sans-serif;color:var(--text)}
+h1{font:600 22px Georgia,serif;color:var(--gold);margin:16px 24px 2px}
+p.lead{margin:0 24px 10px;color:#cfc6b0}
+.nav{margin:8px 24px;display:flex;border:1px solid var(--edge);border-radius:6px;overflow:hidden;width:max-content}
+.nav button{background:var(--plate);color:var(--dim);border:0;padding:7px 18px;font:inherit;cursor:pointer}
+.nav button.on{background:#3a2a0c;color:var(--gold)}
+section{display:none;padding:12px 24px 50px}
+section.on{display:block}
+.cap{font-size:12px;color:#ffe9a0;margin:0 0 8px}
+
+/* window */
+.win{position:relative;width:720px;height:520px;background:var(--bg);border:1px solid var(--edge);border-radius:8px;
+  box-shadow:0 0 0 1px #000,0 18px 40px rgba(0,0,0,.6);overflow:hidden}
+.head{height:58px;display:flex;align-items:center;gap:12px;padding:0 14px;background:linear-gradient(180deg,#1d160d,#0e0b08);border-bottom:1px solid var(--line)}
+.logo{width:38px;height:38px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#e3f5c4,var(--hunter) 50%,#3f5a22);
+  box-shadow:0 0 0 2px #2a1d0c,0 0 12px rgba(170,211,114,.35);display:flex;align-items:center;justify-content:center;font:700 18px Georgia;color:#1d2b0e}
+.brand b{display:block;font:600 17px Georgia,serif;color:var(--hunter)}
+.brand small{color:var(--dim)}
+.tabs{display:flex;gap:4px;padding:8px 14px 0;border-bottom:1px solid var(--edge);background:var(--bar)}
+.tab{position:relative;padding:6px 16px 7px;margin-bottom:-1px;border:1px solid var(--line);border-bottom:0;border-radius:7px 7px 0 0;
+  background:#120f0b;color:var(--dim);cursor:pointer;font-weight:600}
+.tab.on{background:linear-gradient(180deg,#3a2a10,#18130b 75%);color:var(--gold);border-color:var(--edge)}
+.tab.on:after{content:"";position:absolute;left:10px;right:10px;bottom:-1px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.body{position:absolute;top:97px;left:0;right:0;bottom:0;padding:10px 14px;overflow:auto}
+.pane{display:none}.pane.on{display:block}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.card{background:var(--plate);border:1px solid var(--line);border-radius:7px;padding:10px 12px;margin-bottom:10px}
+.card h3{margin:0 0 8px;font:600 11px "Segoe UI";letter-spacing:1.2px;color:var(--gold);text-transform:uppercase;display:flex;justify-content:space-between}
+.card h3 small{letter-spacing:0;text-transform:none;color:var(--dim);font-weight:400}
+.kv{display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid #1f1911}
+.kv:last-child{border:0}.kv span:first-child{color:var(--dim)}
+.bar{height:10px;background:#0a0806;border:1px solid #2c2216;border-radius:5px;overflow:hidden}
+.bar i{display:block;height:100%}
+.brow{display:flex;align-items:center;gap:8px;margin:5px 0}.brow label{width:30px;color:var(--dim)}.brow .bar{flex:1}.brow em{width:24px;text-align:right;font-style:normal}
+.btn{background:linear-gradient(180deg,#2e2312,#1a140b);border:1px solid var(--edge);color:var(--text);border-radius:5px;padding:5px 11px;font:inherit;cursor:pointer}
+.btn:hover{border-color:var(--gold);color:var(--gold)}
+.btn.sm{padding:2px 8px;font-size:12px}
+select{background:#0a0806;color:var(--text);border:1px solid var(--edge);border-radius:5px;padding:4px 8px;font:inherit}
+.tag{display:inline-block;background:#2a2112;border:1px solid var(--edge);border-radius:10px;padding:1px 9px;margin-right:4px;font-size:12px}
+.ok{color:var(--green)}.gl{color:var(--gold)}
+table{width:100%;border-collapse:collapse}th{text-align:left;color:var(--gold);font-weight:600;font-size:11px;letter-spacing:.8px;text-transform:uppercase}
+td,th{padding:4px 6px;border-bottom:1px solid #221b12}
+tr.sel td{background:#241a0b}
+.hint{background:#241a0b;border:1px dashed var(--edge);border-radius:6px;padding:6px 9px;color:#e6d3a2;margin-top:8px}
+.slot{display:flex;align-items:center;gap:8px;padding:6px;border:1px solid var(--line);border-radius:6px;margin-bottom:6px;background:var(--row)}
+.slot.empty{color:var(--dim);border-style:dashed}
+.sq{width:28px;height:28px;border-radius:5px;border:1px solid #555;display:inline-flex;align-items:center;justify-content:center;font:700 11px Arial;color:#111;flex:none}
+
+/* talents */
+.trees{display:flex;gap:8px}
+.tree{flex:1;background:var(--plate);border:1px solid var(--line);border-radius:7px;padding:6px 6px 8px}
+.tree h4{margin:0 0 6px;font:600 12px "Segoe UI";color:var(--hunter);display:flex;justify-content:space-between}
+.tgrid{display:grid;grid-template-columns:repeat(4,34px);gap:6px 8px;justify-content:center}
+.tal{position:relative;width:34px;height:34px;border-radius:5px;border:1px solid #6b5230;display:flex;align-items:center;justify-content:center;
+  font:700 13px Arial;color:#1b1209;cursor:pointer;user-select:none}
+.tal.none{visibility:hidden}
+.tal.lock{filter:grayscale(1) brightness(.45);cursor:not-allowed}
+.tal.max{border-color:var(--gold);box-shadow:0 0 6px rgba(255,209,0,.5)}
+.tal.part{border-color:var(--green)}
+.tal b{position:absolute;right:-4px;bottom:-5px;background:#000;color:var(--yellow);border:1px solid #444;border-radius:4px;font:700 9px Arial;padding:0 3px}
+.tfoot{display:flex;gap:8px;align-items:center;margin-top:8px;flex-wrap:wrap}
+.tfoot .sp{flex:1}
+.tfoot b{color:var(--gold)}
+
+/* HUD list */
+.hrow{display:grid;grid-template-columns:100px 100px 36px 44px 1fr auto;gap:6px;align-items:center;padding:5px 6px;border-bottom:1px solid #221b12;font-size:12px}
+.hrow.sel{background:#241a0b}
+.chk{display:inline-flex;gap:3px;align-items:center;margin-right:6px;color:var(--dim);font-size:11px;white-space:nowrap}
+.sld{display:grid;grid-template-columns:105px 1fr 28px;gap:8px;align-items:center;margin:4px 0;font-size:12px}
+input[type=range]{accent-color:var(--gold);width:100%}
+
+/* game scene */
+.scene{position:relative;height:620px;border:1px solid #000;border-radius:8px;overflow:hidden;
+  background:radial-gradient(ellipse at 50% 20%,#3d5a3a 0%,#243a2a 40%,#0f1a14 100%)}
+.scene:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(40,60,90,.55) 0%,transparent 45%)}
+.hb{position:absolute;display:grid;gap:3px}
+.hb .lbl{position:absolute;left:0;top:-16px;font-size:10px;color:#ddd;opacity:.7;white-space:nowrap}
+.ab{position:relative;border-radius:4px;border:1px solid #000;box-shadow:inset 0 0 0 1px rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;
+  font:700 calc(var(--s)*.4) Arial;color:rgba(0,0,0,.65)}
+.ab.dim{filter:grayscale(1) brightness(.5)}
+.ab.range:after{content:"";position:absolute;inset:0;background:rgba(255,40,20,.45);border-radius:3px}
+.ab.cd:after{content:"";position:absolute;inset:0;border-radius:3px;background:conic-gradient(rgba(0,0,0,.72) 0 62%,transparent 62% 100%)}
+.ab .num{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#fff;font:700 calc(var(--s)*.5) Arial;text-shadow:0 0 3px #000;z-index:2}
+.ab.ready:before{content:"";position:absolute;inset:-3px;border:2px solid var(--gold);border-radius:6px;animation:flash 1.4s ease-out infinite;z-index:1}
+@keyframes flash{0%{opacity:1;transform:scale(1);box-shadow:0 0 10px var(--gold)}100%{opacity:0;transform:scale(1.35)}}
+.ab.proc:before{content:"";position:absolute;inset:-3px;border:2px solid var(--yellow);border-radius:6px;animation:pulse 1s ease-in-out infinite alternate;z-index:1}
+@keyframes pulse{from{box-shadow:0 0 3px var(--yellow);opacity:.6}to{box-shadow:0 0 14px 3px var(--yellow);opacity:1}}
+.ab.auto{outline:2px dotted #8fe08f;outline-offset:1px}
+.mover{display:none;position:absolute;inset:-6px;background:rgba(40,200,80,.28);border:1px solid #4dff7a;color:#d8ffe0;z-index:5;font:600 11px Arial;
+  padding:2px 5px;cursor:move}
+.edit .mover{display:block}
+.mover .hnd{position:absolute;right:0;bottom:0;width:14px;height:14px;background:#4dff7a;cursor:nwse-resize;color:#000;font-size:10px;text-align:center;line-height:14px}
+.mover .grid{position:absolute;right:16px;bottom:1px;font-size:10px;background:rgba(0,0,0,.6);padding:0 4px;border-radius:3px}
+.ctrl{display:flex;gap:18px;align-items:center;margin:0 0 10px;flex-wrap:wrap}
+.legend-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:12px}
+.lg{display:flex;gap:14px;align-items:center;background:var(--plate);border:1px solid var(--line);border-radius:7px;padding:12px}
+.lg .sample{padding:10px;background:#1c2a1f;border-radius:6px;flex:none}
+.lg b{color:var(--gold);display:block;margin-bottom:2px}
+
+/* scroll boxes + phone */
+.xs{overflow-x:auto;max-width:100%;padding-bottom:6px}
+.seg{display:flex;border:1px solid var(--edge);border-radius:6px;overflow:hidden;width:max-content}
+.seg button{background:var(--plate);color:var(--dim);border:0;padding:6px 14px;font:inherit;cursor:pointer}
+.seg button.on{background:#3a2a0c;color:var(--gold)}
+@media (max-width:520px){
+  h1{margin:12px 14px 2px;font-size:19px}p.lead{margin:0 14px 8px}
+  .nav{margin:8px 14px;max-width:calc(100% - 28px);overflow-x:auto}.nav button{padding:7px 12px;white-space:nowrap}
+  section{padding:10px 14px 40px}
+  .legend-grid{grid-template-columns:1fr}.lg{flex-wrap:wrap}
+}
+
+/* HUD tab */
+.hcols{display:grid;grid-template-columns:260px 1fr;gap:10px;align-items:start}
+.brw{display:grid;grid-template-columns:24px 26px 1fr auto auto;gap:6px;align-items:center;padding:5px 4px;border-bottom:1px solid #221b12;font-size:12px;cursor:pointer}
+.brw.sel{background:#241a0b}
+.brw.off b{color:var(--dim);text-decoration:line-through}
+.eye{background:none;border:0;color:var(--text);cursor:pointer;padding:0;font-size:15px;line-height:1}
+.brw.off .eye{color:#5a5040}
+.ki{width:24px;height:24px;border-radius:5px;border:1px solid #000;display:flex;align-items:center;justify-content:center;font:700 11px Arial;color:#111}
+.chips{display:flex;flex-wrap:wrap;gap:5px}
+.chip{background:#2a2112;border:1px solid var(--edge);border-radius:12px;padding:2px 10px;font:inherit;font-size:12px;color:var(--text);cursor:pointer}
+.chip:hover{border-color:var(--gold);color:var(--gold)}
+.chip.done{opacity:.45;cursor:default;color:var(--dim)}.chip.done:hover{border-color:var(--edge);color:var(--dim)}
+.prev{background:#0a0806;border:1px solid #2c2216;border-radius:6px;padding:8px;overflow:auto;max-height:120px;margin-bottom:8px}
+.prev .pg{display:grid;width:max-content}
+.prev .pg i{background:#8fb866;border-radius:3px;border:1px solid #000}
+.frow{display:grid;grid-template-columns:1fr auto;gap:6px 10px;align-items:center;margin:4px 0;font-size:12px}
+.stp{display:inline-flex;align-items:center;border:1px solid var(--edge);border-radius:5px;overflow:hidden}
+.stp button{background:#2a2112;color:var(--gold);border:0;width:26px;height:24px;font:700 15px Arial;cursor:pointer}
+.stp button:hover{background:#3a2a0c}
+.stp b{min-width:42px;text-align:center;font-weight:600}
+.fl{display:flex;align-items:center;gap:6px;font-size:12px;padding:2px 0}
+.fl em{color:var(--dim);font-style:normal;font-size:11px}
+.btn.danger{border-color:#8a3b2a;color:#ff9a86}.btn.danger:hover{border-color:var(--red);color:var(--red)}
+.btnrow{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.msg{color:#e6d3a2;font-size:11px;min-height:15px;margin-top:6px}
+.foot{color:var(--dim);font-size:12px;margin-top:6px}
+
+/* edit mode */
+.scene{width:760px;height:520px}
+.hb.eb{touch-action:none}
+.hb.hid{opacity:.35}
+.hb .empt{position:absolute;inset:0;display:none;align-items:center;justify-content:center;color:var(--dim);font-size:11px;text-align:center;pointer-events:none;z-index:3}
+.hb.emp .empt{display:flex}
+.hb.emp .ab{background:rgba(0,0,0,.25)!important;border:1px dashed rgba(236,230,218,.35);box-shadow:none;color:transparent}
+.edit .hb.emp .empt{color:#fff;text-shadow:0 0 3px #000}
+.ov{display:none;position:absolute;inset:-4px;background:rgba(95,160,50,.30);border:1px solid rgba(170,211,114,.75);border-radius:4px;z-index:5;cursor:move}
+.edit .ov{display:block}
+.hb.sel .ov{border:2px solid var(--gold);box-shadow:0 0 10px rgba(255,209,0,.45)}
+.edit .hb .lbl{top:-24px;left:-4px;background:#2b3d1a;border:1px solid rgba(170,211,114,.8);border-bottom:0;border-radius:4px 4px 0 0;padding:1px 7px;color:#e6f5cf;opacity:1;font-size:11px;z-index:6}
+.hb.sel .lbl{background:#4a3a0a;border-color:var(--gold);color:var(--gold)}
+.grip{display:none;position:absolute;right:-6px;bottom:-6px;width:18px;height:18px;background:var(--gold);clip-path:polygon(100% 0,100% 100%,0 100%);z-index:7;cursor:nwse-resize}
+.edit .hb.sel .grip{display:block}
+.gridon:after{content:"";position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.07) 1px,transparent 1px);background-size:16px 16px}
+.etb,.pop{display:none;position:absolute;z-index:20;background:rgba(14,11,8,.96);border:1px solid var(--gold);border-radius:8px;box-shadow:0 6px 20px rgba(0,0,0,.7)}
+.edit .etb{display:flex}.edit .pop{display:block}
+.etb{left:20px;top:10px;width:720px;flex-wrap:wrap;align-items:center;gap:8px 10px;padding:8px 12px}
+.etb h4{margin:0;font:600 15px Georgia,serif;color:var(--gold)}
+.etb .h{flex:1 1 100%;order:5;color:var(--dim);font-size:11px}
+.btn.gold{background:linear-gradient(180deg,#ffd100,#c79a00);color:#1a1200;border-color:#ffe36a;font-weight:700}
+.btn.gold:hover{color:#000;border-color:#fff}
+.btn.tg.on{border-color:var(--gold);color:var(--gold);background:#3a2a0c}
+.etb .sp{flex:1}
+.pop{width:190px;padding:8px 10px;font-size:12px}
+.pop h5{margin:0 0 6px;font:600 12px "Segoe UI";color:var(--gold)}
+.pop .btn{width:100%;margin-top:5px;text-align:left}
+</style>
+</head>
+<body>
+<h1>ClassPages · Mockups</h1>
+<p class="lead">WoW: Forever · Jäger zuerst. Statische Vorschau, Werte sind Beispieldaten.</p>
+<div class="nav" id="nav">
+  <button data-s="s1" class="on">Klassenfenster</button><button data-s="s2">Bearbeitungsmodus</button><button data-s="s3">Legende</button>
+</div>
+
+<!-- ===== 1 Klassenfenster ===== -->
+<section id="s1" class="on">
+<p class="cap">Klassenfenster 720×520 (Reiter anklickbar; Talente: Linksklick +, Rechtsklick −)</p>
+<div class="xs"><div class="win">
+  <div class="head"><div class="logo">J</div>
+    <div class="brand"><b>Jäger · ClassPages</b><small>Stufe 42 · Treffsicherheit 21/0/0</small></div></div>
+  <div class="tabs" id="wtabs">
+    <div class="tab on" data-p="p1">Übersicht</div><div class="tab" data-p="p2">Talente</div>
+    <div class="tab" data-p="p3">Begleiter</div><div class="tab" data-p="p4">HUD</div></div>
+  <div class="body">
+    <!-- Übersicht -->
+    <div class="pane on" id="p1"><div class="grid2">
+      <div class="card"><h3>Talentverteilung <small>21 Punkte</small></h3>
+        <div class="brow"><label>BM</label><div class="bar"><i style="width:0%;background:#d9a441"></i></div><em>0</em></div>
+        <div class="brow"><label>MM</label><div class="bar"><i style="width:100%;background:var(--hunter)"></i></div><em>21</em></div>
+        <div class="brow"><label>SV</label><div class="bar"><i style="width:0%;background:#6aa8d9"></i></div><em>0</em></div></div>
+      <div class="card"><h3>Begleiter</h3>
+        <div class="kv"><span>Name</span><span>Fenris</span></div><div class="kv"><span>Familie</span><span>Wolf</span></div>
+        <div class="kv"><span>Stufe</span><span>42</span></div>
+        <div class="kv"><span>Zufriedenheit</span><span class="ok">Zufrieden</span></div>
+        <div class="kv"><span>Loyalität</span><span>Stufe 4</span></div>
+        <div class="kv"><span>Trainingspunkte</span><span class="gl">38</span></div></div>
+      <div class="card"><h3>Munition</h3>
+        <div class="kv"><span>Im Köcher</span><span>1.240 Pfeile</span></div>
+        <div class="bar" style="margin-top:6px"><i style="width:62%;background:#c9a24a"></i></div>
+        <div style="color:var(--dim);margin-top:4px">Köcher 1.240 / 2.000</div></div>
+      <div class="card"><h3>HUD <small>3 aktive Leisten</small></h3>
+        <div class="kv"><span>Schüsse</span><span>8×1</span></div><div class="kv"><span>Begleiter</span><span>10×1</span></div>
+        <div class="kv"><span>Fallen &amp; Aspekte</span><span>4×2</span></div>
+        <div style="margin-top:8px"><button class="btn" onclick="goTab('p4')">Bearbeiten</button></div></div>
+    </div></div>
+
+    <!-- Talente -->
+    <div class="pane" id="p2">
+      <div class="trees" id="trees"></div>
+      <div class="tfoot">
+        <span>Verfügbar: <b id="avail">12</b> · Stufe 60 → 51 Punkte</span><span class="sp"></span>
+        <select><option>Build: Raid MM</option><option>Build: Leveln BM</option><option>Build: PvP SV</option></select></div>
+      <div class="tfoot">
+        <button class="btn" id="reset">Zurücksetzen</button><button class="btn">Exportieren</button>
+        <button class="btn">Mit aktuellen Talenten vergleichen</button></div>
+    </div>
+
+    <!-- Begleiter -->
+    <div class="pane" id="p3"><div class="grid2">
+      <div>
+        <div class="card"><h3>Aktiver Begleiter <small>Fenris</small></h3>
+          <div class="kv"><span>Familie</span><span>Wolf</span></div>
+          <div class="kv"><span>Zufriedenheit</span><span class="ok">Zufrieden</span></div>
+          <div class="bar"><i style="width:80%;background:var(--green)"></i></div>
+          <div class="kv"><span>Loyalität</span><span>Stufe 4</span></div><div class="kv"><span>Trainingspunkte</span><span>38</span></div>
+          <div style="margin-top:6px"><span class="tag">Fleisch</span><span class="tag">Fisch</span></div></div>
+        <div class="card"><h3>Fähigkeiten</h3>
+          <div class="kv"><span>Biss</span><span>Rang 6</span></div><div class="kv"><span>Knurren</span><span>Rang 5</span></div>
+          <div class="kv"><span>Klaue</span><span>Rang 7</span></div>
+          <div class="hint"><b>Fehlende Fähigkeiten:</b> Klaue Rang 8: zähmbar ab Stufe 50</div></div></div>
+      <div>
+        <div class="card"><h3>Stall <small>3 Plätze</small></h3>
+          <div class="slot"><span class="sq" style="background:#9aa0a8">W</span><div style="flex:1"><b>Fenris</b><br><small style="color:var(--dim)">Wolf · Stufe 42 · aktiv</small></div></div>
+          <div class="slot"><span class="sq" style="background:#c98b4a">B</span><div style="flex:1"><b>Brumm</b><br><small style="color:var(--dim)">Bär · Stufe 38</small></div><button class="btn sm">Rufen</button></div>
+          <div class="slot empty">Platz frei</div></div>
+        <div class="card"><h3>Familien</h3>
+          <table><tr><th>Familie</th><th>Spezial</th><th>Ernährung</th></tr>
+          <tr class="sel"><td>Wolf</td><td>Heulen der Wildnis</td><td>Fleisch, Fisch</td></tr>
+          <tr><td>Katze</td><td>Schleichen</td><td>Fleisch, Fisch</td></tr>
+          <tr><td>Eber</td><td>Ansturm</td><td>Fleisch, Obst, Pilze</td></tr>
+          <tr><td>Eule</td><td>Kreischen</td><td>Fleisch</td></tr></table></div></div>
+    </div></div>
+
+    <!-- HUD -->
+    <div class="pane" id="p4">
+      <div class="hcols">
+        <div>
+          <div class="card" style="padding:4px 8px"><h3 style="margin-top:6px">Leisten</h3><div id="hlist"></div>
+            <div class="btnrow" style="align-items:center"><button class="btn" id="addbar">+ Neue Leiste</button>
+              <select id="addkind"></select></div></div>
+          <div class="card"><h3>Vorlagen der Klasse</h3><div class="chips" id="chips"></div></div>
+        </div>
+        <div class="card" id="editor"></div>
+      </div>
+      <div class="foot">Ziehe Zauber, Gegenstände oder Makros direkt auf eine Leiste. Shift+Ziehen entfernt einen Knopf.</div>
+    </div>
+  </div>
+</div></div>
+</section>
+
+<!-- ===== 2 Bearbeitungsmodus ===== -->
+<section id="s2">
+<p class="cap">Bearbeitungsmodus (Simulation; Leisten ziehen, Ecke ziehen, anklicken)</p>
+<div class="ctrl"><div class="seg" id="view"><button data-e="0">Normalansicht</button><button data-e="1" class="on">Bearbeitungsmodus</button></div></div>
+<div class="xs"><div class="scene edit gridon" id="scene">
+  <div id="bars"></div>
+  <div class="etb" id="etb"><h4>HUD bearbeiten</h4><span class="sp"></span>
+    <button class="btn" id="tbnew">+ Neue Leiste</button>
+    <button class="btn tg on" id="tbsnap">Raster einrasten</button>
+    <button class="btn gold" id="tbdone">Fertig</button>
+    <div class="h">Leiste anklicken = bearbeiten · ziehen = verschieben · Ecke ziehen = Größe</div></div>
+  <div class="pop" id="pop"></div>
+</div></div>
+</section>
+
+<!-- ===== 3 Legende ===== -->
+<section id="s3">
+<p class="cap">Legende der Zustände</p>
+<div class="legend-grid" id="legend"></div>
+<div class="card" style="margin-top:14px;max-width:700px;border-color:var(--edge)">
+  <h3>Regel</h3>Berufe: keine Abklingzeit-Hervorhebung, Timer nur wenn die Quelle einen hat.<br>Leere Leisten zeigen ihre Plätze, bis ein Knopf darauf liegt.</div>
+</section>
+
+<script>
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+$$('#nav button').forEach(b=>b.onclick=()=>{
+  $$('#nav button').forEach(x=>x.classList.toggle('on',x===b));
+  $$('section').forEach(s=>s.classList.toggle('on',s.id===b.dataset.s));
+});
+function goTab(p){$$('#wtabs .tab').forEach(t=>t.classList.toggle('on',t.dataset.p===p));$$('.pane').forEach(x=>x.classList.toggle('on',x.id===p));}
+$$('#wtabs .tab').forEach(t=>t.onclick=()=>goTab(t.dataset.p));
+
+// ---- Talente ----
+const COL=['#d9a441','#aad372','#6aa8d9'], TN=['Tierherrschaft','Treffsicherheit','Überleben'];
+const LAYOUT=[
+ [[5,3,0,2],[2,5,3,0],[3,2,0,3],[1,5,2,3],[0,3,5,2],[3,1,2,0],[1,0,5,0]],
+ [[5,2,0,3],[5,2,5,0],[2,3,0,1],[3,5,2,3],[1,3,5,0],[5,2,3,2],[0,1,0,3]],
+ [[5,3,0,2],[3,5,0,2],[1,5,3,0],[3,2,5,3],[0,1,3,5],[3,2,1,0],[1,0,0,0]]];
+const T=LAYOUT.map(t=>t.map(r=>r.map(m=>({m,r:0}))));
+const TOTAL=42-9;
+const spent=t=>T[t].flat().reduce((a,c)=>a+c.r,0);
+const all=()=>spent(0)+spent(1)+spent(2);
+function unlocked(t,row){let s=0;for(let i=0;i<row;i++)T[t][i].forEach(c=>s+=c.r);return s>=row*5;}
+(function(){let n=21;for(let row=0;row<7&&n>0;row++)for(let c=0;c<4&&n>0;c++){const x=T[1][row][c];if(!x.m||!unlocked(1,row))continue;const a=Math.min(x.m,n);x.r=a;n-=a;}})();
+function drawTrees(){
+  $('#trees').innerHTML=T.map((tr,t)=>`<div class="tree"><h4><span>${TN[t]}</span><span>${spent(t)}</span></h4><div class="tgrid">`+
+   tr.map((row,ri)=>row.map((c,ci)=>{
+     const lock=!unlocked(t,ri), cls=!c.m?'none':lock?'lock':c.r===c.m?'max':c.r>0?'part':'';
+     return `<div class="tal ${cls}" data-t="${t}" data-r="${ri}" data-c="${ci}" style="background:${COL[t]}">${String.fromCharCode(65+(ri*4+ci)%26)}${c.m?`<b>${c.r}/${c.m}</b>`:''}</div>`;}).join('')).join('')+`</div></div>`).join('');
+  $('#avail').textContent=TOTAL-all();
+  $$('.tal').forEach(el=>{
+    const f=(d,e)=>{e.preventDefault();const t=+el.dataset.t,r=+el.dataset.r,x=T[t][r][+el.dataset.c];
+      if(d>0){if(x.r<x.m&&unlocked(t,r)&&all()<TOTAL)x.r++;}
+      else if(x.r>0){x.r--;let ok=true;for(let rw=r+1;rw<7;rw++)if(T[t][rw].some(z=>z.r>0)&&!unlocked(t,rw))ok=false;if(!ok)x.r++;}
+      drawTrees();};
+    el.onclick=e=>f(1,e);el.oncontextmenu=e=>f(-1,e);});
+}
+$('#reset').onclick=()=>{T.flat(2).forEach(c=>c.r=0);drawTrees();};
+drawTrees();
+
+// ---- Leistenmodell (geteilt: HUD-Reiter + Bearbeitungsmodus) ----
+const KINDS=['Angriffe','Hilfsmittel','Begleiter','Berufe','Gegenstände','Frei'];
+const KC={Angriffe:'#e8a25a',Hilfsmittel:'#7fc4e8',Begleiter:'#c9e87f',Berufe:'#d4a76a','Gegenstände':'#b48fe8',Frei:'#a5b4c4'};
+const FLN=['Abklingzeit','Bereit-Blitz','Reaktiv-Leuchten','Proc-Leuchten','Reichweite','Nur im Kampf'];
+const FD={Angriffe:[1,1,1,1,1,0],Hilfsmittel:[1,1,0,1,0,0],Begleiter:[1,0,0,0,1,0],Berufe:[0,0,0,0,0,0],'Gegenstände':[1,0,0,0,0,0],Frei:[1,1,1,1,1,0]};
+const TPL={'Schüsse':['Angriffe',8,1],'Nahkampf & Reaktiv':['Angriffe',4,1],'Begleiter':['Begleiter',10,1],'Fallen & Aspekte':['Hilfsmittel',4,2],'Begleiterpflege':['Begleiter',5,1],'Berufe':['Berufe',4,1]};
+const RG={cols:[1,12,1,''],rows:[1,4,1,''],size:[24,56,2,'px'],gap:[0,10,1,'px'],scale:[50,150,5,'%'],opacity:[20,100,5,'%']};
+const SW=760,SH=520,PAL=['#e8a25a','#7fc4e8','#c9e87f','#e87fa8','#b48fe8','#e8d97f','#7fe8c2','#e8836a','#a5b4c4','#d4a76a','#8fd4a0','#d98fd4'];
+const EYE='<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1 8s2.5-5 7-5 7 5 7 5-2.5 5-7 5-7-5-7-5z"/><circle cx="8" cy="8" r="2.2"/></svg>';
+const EYE0='<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1 8s2.5-5 7-5 7 5 7 5-2.5 5-7 5-7-5-7-5z"/><path d="M2 14L14 2"/></svg>';
+let uid=0,sel=0,edit=true,snap=true,undo=null;
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const mkBar=o=>Object.assign({id:++uid,name:'Neue Leiste',kind:'Frei',cols:6,rows:1,size:40,gap:3,scale:100,opacity:100,vis:true,fl:{},tpl:null,x:288,y:160,empty:true,off:0,st:{}},o);
+const EB=[
+ mkBar({name:'Schüsse',kind:'Angriffe',cols:8,size:44,x:96,y:400,empty:false,tpl:'Schüsse',st:{1:'cd',2:'ready',3:'proc',4:'dim',5:'range'}}),
+ mkBar({name:'Begleiter',kind:'Begleiter',cols:10,size:30,x:96,y:352,empty:false,tpl:'Begleiter',off:3,st:{4:'auto'}}),
+ mkBar({name:'Fallen & Aspekte',kind:'Hilfsmittel',cols:4,rows:2,size:34,x:560,y:208,empty:false,tpl:'Fallen & Aspekte',off:6}),
+ mkBar({name:'Berufe',kind:'Berufe',cols:4,size:32,x:32,y:208,empty:false,tpl:'Berufe',off:9}),
+ mkBar({name:'Neue Leiste',kind:'Frei',cols:6,size:40,x:288,y:160})];
+const es=b=>Math.max(8,Math.round(b.size*b.scale/100)), eg=b=>Math.round(b.gap*b.scale/100);
+const bw=b=>b.cols*es(b)+(b.cols-1)*eg(b), bh=b=>b.rows*es(b)+(b.rows-1)*eg(b);
+const sn=v=>snap?Math.round(v/16)*16:Math.round(v);
+const fit=b=>{b.x=clamp(b.x,0,Math.max(0,SW-bw(b)));b.y=clamp(b.y,0,Math.max(0,SH-bh(b)));};
+const snapshot=()=>{const b=EB[sel];if(b)undo={idx:sel,b:JSON.parse(JSON.stringify(b))};};
+const msg=t=>{const m=$('#msg');if(m)m.textContent=t;};
+function showSec(id){$('#nav [data-s="'+id+'"]').click();}
+function step(k,d){const b=EB[sel];if(!b)return;snapshot();const r=RG[k];b[k]=clamp(b[k]+d*r[2],r[0],r[1]);fit(b);drawAll();}
+function addBar(o){const n=EB.length;EB.push(mkBar(Object.assign({x:sn(32+(n%6)*48),y:sn(96+(n%4)*32)},o)));sel=EB.length-1;drawAll();}
+function delBar(){if(sel<0)return;undo={idx:sel,b:JSON.parse(JSON.stringify(EB[sel]))};EB.splice(sel,1);sel=Math.min(sel,EB.length-1);drawAll();msg('Gelöscht. Rückgängig möglich.');}
+function stepper(k,b){const r=RG[k];return `<span class="stp" data-k="${k}"><button data-d="-1">−</button><b>${b[k]}${r[3]}</b><button data-d="1">+</button></span>`;}
+
+function drawList(){
+  $('#hlist').innerHTML=EB.map((b,i)=>`<div class="brw ${i===sel?'sel':''} ${b.vis?'':'off'}" data-i="${i}">
+    <button class="eye" data-eye="${i}" title="${b.vis?'Sichtbar':'Ausgeblendet'}">${b.vis?EYE:EYE0}</button>
+    <span class="ki" style="background:${KC[b.kind]}" title="${b.kind}">${b.kind[0]}</span><b>${b.name}</b>
+    <span style="color:var(--dim)">${b.cols}×${b.rows}</span><button class="btn sm" data-i="${i}">Bearbeiten</button></div>`).join('')||'<div style="padding:8px;color:var(--dim)">Keine Leisten.</div>';
+}
+function drawChips(){
+  $('#chips').innerHTML=Object.keys(TPL).map(k=>{const d=EB.some(b=>b.tpl===k);
+    return `<button class="chip ${d?'done':''}" data-t="${k}" ${d?'disabled title="Bereits vorhanden"':''}>${d?'✓ ':'+ '}${k}</button>`;}).join('');
+}
+function drawEditor(){
+  const b=EB[sel],ed=$('#editor');
+  if(!b){ed.innerHTML='<h3>Editor</h3><div style="color:var(--dim)">Keine Leiste ausgewählt.</div>';return;}
+  const c=Math.max(6,Math.min(18,Math.round(b.size*.45))),g=Math.max(1,Math.round(b.gap/2));
+  const cells=Array.from({length:b.cols*b.rows},()=>`<i style="width:${c}px;height:${c}px"></i>`).join('');
+  ed.innerHTML=`<h3>Editor <small>${b.name}</small></h3>
+   <div class="prev"><div class="pg" style="grid-template-columns:repeat(${b.cols},${c}px);gap:${g}px;opacity:${b.opacity/100}">${cells}</div></div>
+   <div class="frow"><span>Name</span><input id="f-name" type="text" value="${b.name.replace(/"/g,'&quot;')}" style="background:#0a0806;color:var(--text);border:1px solid var(--edge);border-radius:5px;padding:4px 8px;font:inherit;width:150px"></div>
+   <div class="frow"><span>Inhaltsart</span><select id="f-kind">${KINDS.map(k=>`<option ${k===b.kind?'selected':''}>${k}</option>`).join('')}</select></div>
+   <div class="frow"><span>Spalten</span>${stepper('cols',b)}</div><div class="frow"><span>Reihen</span>${stepper('rows',b)}</div>
+   <div class="frow"><span>Knopfgröße</span>${stepper('size',b)}</div><div class="frow"><span>Abstand</span>${stepper('gap',b)}</div>
+   <div class="frow"><span>Skalierung</span>${stepper('scale',b)}</div><div class="frow"><span>Deckkraft</span>${stepper('opacity',b)}</div>
+   <div style="margin-top:8px">${FLN.map((n,i)=>{const own=b.fl[i]!==undefined,v=own?b.fl[i]:FD[b.kind][i];
+     return `<label class="fl"><input type="checkbox" data-f="${i}" ${v?'checked':''}>${n}${own?'':' <em>(wie Inhaltsart)</em>'}</label>`;}).join('')}</div>
+   <div class="btnrow"><button class="btn" data-a="move">Im Spiel verschieben</button><button class="btn" data-a="fill">Aus Vorlage füllen</button>
+    <button class="btn" data-a="undo">Rückgängig</button><button class="btn" data-a="clear">Leeren</button><button class="btn danger" data-a="del">Löschen</button></div>
+   <div class="msg" id="msg"></div>`;
+}
+function drawEB(){
+  const sc=$('#scene');sc.classList.toggle('edit',edit);sc.classList.toggle('gridon',edit&&snap);
+  $$('#view button').forEach(x=>x.classList.toggle('on',!!+x.dataset.e===edit));
+  $('#tbsnap').classList.toggle('on',snap);
+  $('#bars').innerHTML=EB.map((b,i)=>{
+    if(!b.vis&&!edit)return '';
+    const s=es(b),g=eg(b);let cells='';
+    for(let k=0;k<b.cols*b.rows;k++){
+      const st=b.empty?'':(b.st[k]||''),n=st==='cd'?'<span class="num">4</span>':'';
+      const tip={cd:'Abklingzeit',ready:'Bereit',proc:'Konterattacke (Reaktiv)',dim:'Nicht nutzbar',range:'Außer Reichweite',auto:'Autocast'}[st]||'';
+      cells+=`<div class="ab ${st}" style="width:${s}px;height:${s}px;background:${PAL[(k+b.off)%12]}" title="${tip}">${String.fromCharCode(65+(k+b.off)%26)}${n}</div>`;
+    }
+    return `<div class="hb eb ${i===sel?'sel':''} ${b.empty?'emp':''} ${b.vis?'':'hid'}" data-i="${i}" style="left:${b.x}px;top:${b.y}px;--s:${s}px;gap:${g}px;grid-template-columns:repeat(${b.cols},${s}px);opacity:${b.vis?b.opacity/100:.35}">
+      <div class="lbl">${b.name}${edit?` ${b.cols}×${b.rows}${b.vis?'':' (aus)'}`:''}</div>${cells}<div class="empt">Zauber hierher ziehen</div><div class="ov"></div><div class="grip"></div></div>`;
+  }).join('');
+  const p=$('#pop'),b=EB[sel];
+  if(!edit||!b){p.style.display='none';return;}
+  p.style.display='block';
+  let px=b.x+bw(b)+14;if(px+190>SW-4)px=b.x-204;
+  p.style.left=clamp(px,4,SW-194)+'px';p.style.top=clamp(b.y,70,SH-215)+'px';
+  p.innerHTML=`<h5>${b.name}</h5><div class="frow"><span>Spalten</span>${stepper('cols',b)}</div><div class="frow"><span>Reihen</span>${stepper('rows',b)}</div>
+   <div class="frow"><span>Größe</span>${stepper('size',b)}</div>
+   <button class="btn" data-a="more">Weitere Einstellungen…</button><button class="btn" data-a="hide">${b.vis?'Ausblenden':'Einblenden'}</button><button class="btn danger" data-a="del">Löschen</button>`;
+}
+function drawAll(){drawList();drawChips();drawEditor();drawEB();}
+function setEdit(v){edit=v;drawEB();}
+
+// HUD-Reiter
+$('#addkind').innerHTML=KINDS.map(k=>`<option>${k}</option>`).join('');
+$('#addbar').onclick=()=>addBar({kind:$('#addkind').value});
+$('#chips').onclick=e=>{const t=e.target.closest('[data-t]');if(!t||t.disabled)return;const d=TPL[t.dataset.t];addBar({name:t.dataset.t,kind:d[0],cols:d[1],rows:d[2],tpl:t.dataset.t,empty:false});};
+$('#hlist').onclick=e=>{
+  const ey=e.target.closest('[data-eye]');if(ey){const b=EB[+ey.dataset.eye];b.vis=!b.vis;drawAll();return;}
+  const r=e.target.closest('[data-i]');if(r){sel=+r.dataset.i;drawAll();}
+};
+$('#editor').onclick=e=>{
+  const t=e.target.closest('button');if(!t)return;const b=EB[sel];
+  if(t.dataset.d){step(t.parentNode.dataset.k,+t.dataset.d);return;}
+  const a=t.dataset.a;if(!a||!b)return;
+  if(a==='move'){showSec('s2');setEdit(true);return;}
+  if(a==='del'){delBar();return;}
+  if(a==='undo'){if(!undo){msg('Nichts zum Rückgängigmachen.');return;}
+    const i=EB.findIndex(x=>x.id===undo.b.id);if(i>=0)EB[i]=undo.b;else EB.splice(undo.idx,0,undo.b);sel=EB.findIndex(x=>x.id===undo.b.id);undo=null;drawAll();msg('Letzte Änderung zurückgenommen.');return;}
+  snapshot();
+  if(a==='fill'){b.empty=false;drawAll();msg('Aus Vorlage gefüllt (Beispiel).');}
+  if(a==='clear'){b.empty=true;drawAll();msg('Leiste geleert.');}
+};
+$('#editor').onchange=e=>{
+  const b=EB[sel],t=e.target;if(!b)return;snapshot();
+  if(t.id==='f-kind'){b.kind=t.value;drawAll();}
+  else if(t.dataset.f!==undefined){b.fl[+t.dataset.f]=t.checked?1:0;drawEditor();}
+};
+$('#editor').oninput=e=>{if(e.target.id==='f-name'){EB[sel].name=e.target.value;drawList();drawEB();}};
+
+// Bearbeitungsmodus
+let drag=null;
+const bars=$('#bars');
+bars.addEventListener('pointerdown',e=>{
+  if(!edit)return;const el=e.target.closest('.eb');if(!el)return;
+  e.preventDefault();const i=+el.dataset.i,b=EB[i];sel=i;
+  drag={mode:e.target.classList.contains('grip')?'rs':'mv',sx:e.clientX,sy:e.clientY,x0:b.x,y0:b.y,w0:bw(b),h0:bh(b)};
+  try{bars.setPointerCapture(e.pointerId);}catch(x){}
+  drawAll();
+});
+bars.addEventListener('pointermove',e=>{
+  if(!drag)return;const b=EB[sel],dx=e.clientX-drag.sx,dy=e.clientY-drag.sy;
+  if(drag.mode==='mv'){b.x=clamp(sn(drag.x0+dx),0,SW-bw(b));b.y=clamp(sn(drag.y0+dy),0,SH-bh(b));}
+  else{const s=es(b),g=eg(b);
+    b.cols=clamp(Math.round((drag.w0+dx+g)/(s+g)),1,Math.min(12,Math.floor((SW-b.x+g)/(s+g))));
+    b.rows=clamp(Math.round((drag.h0+dy+g)/(s+g)),1,Math.min(4,Math.floor((SH-b.y+g)/(s+g))));}
+  drawList();drawEB();
+});
+const endDrag=()=>{if(drag){drag=null;drawAll();}};
+bars.addEventListener('pointerup',endDrag);bars.addEventListener('pointercancel',endDrag);
+$('#scene').addEventListener('pointerdown',e=>{
+  if(!edit||e.target.closest('.eb,.pop,.etb'))return;sel=-1;drawAll();});
+$('#pop').onclick=e=>{
+  const t=e.target.closest('button');if(!t)return;const b=EB[sel];if(!b)return;
+  if(t.dataset.d){step(t.parentNode.dataset.k,+t.dataset.d);return;}
+  const a=t.dataset.a;
+  if(a==='more'){showSec('s1');goTab('p4');}
+  if(a==='hide'){b.vis=!b.vis;drawAll();}
+  if(a==='del')delBar();
+};
+$('#tbnew').onclick=()=>addBar({x:sn(288),y:sn(128)});
+$('#tbsnap').onclick=()=>{snap=!snap;drawEB();};
+$('#tbdone').onclick=()=>setEdit(false);
+$$('#view button').forEach(x=>x.onclick=()=>setEdit(!!+x.dataset.e));
+drawAll();
+
+// ---- Legende ----
+const mk=(cls,inner='')=>`<div class="sample"><div class="hb" style="position:static;--s:44px"><div class="ab ${cls}" style="width:44px;height:44px;background:#e8a25a">K${inner}</div></div></div>`;
+$('#legend').innerHTML=[
+ [mk('cd','<span class="num">4</span>'),'Abklingzeit','Dunkler Sweep läuft im Uhrzeigersinn, die Zahl zeigt die Restsekunden.'],
+ [mk('ready'),'Bereit-Blitz','Goldener Ring blitzt einmal auf, sobald die Fähigkeit wieder bereit ist.'],
+ [mk('proc'),'Reaktiv','Konterattacke / Mungobiss werden nach Parieren oder Ausweichen nutzbar und leuchten gelb.'],
+ [mk('proc'),'Proc-Glow','Pulsierender gelber Rand bei kurzzeitigen Procs.'],
+ [mk('dim'),'Nicht nutzbar','Entsättigt und abgedunkelt: nicht erlernt, zu wenig Fokus oder Bedingung nicht erfüllt.'],
+ [mk('range'),'Außer Reichweite','Rote Tönung, wenn das Ziel zu weit entfernt ist.']
+].map(x=>`<div class="lg">${x[0]}<div><b>${x[1]}</b>${x[2]}</div></div>`).join('');
+</script>
+</body>
+</html>

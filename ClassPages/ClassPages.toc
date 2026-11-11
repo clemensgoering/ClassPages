@@ -1,0 +1,82 @@
+## Interface: 16001
+## Title: ClassPages
+## IconTexture: Interface\AddOns\ClassPages\Media\icon
+## Notes: One window for your class (talent planner, trainer, class guides, hunter pets) and your own action bars with cooldown timers, ready flash and reactive glow.
+## Notes-deDE: Ein Fenster für deine Klasse (Talentplaner, Lehrer, Klassenseiten, Jäger-Begleiter) und eigene Aktionsleisten mit Abklingzeiten, Bereit-Blitz und Reaktiv-Leuchten.
+## Author: Clemens
+## Version: @project-version@
+## SavedVariables: ClassPagesDB, ClassPagesBackupDB
+## SavedVariablesPerCharacter: ClassPagesCharDB
+## OptionalDeps: Masque
+## AddonCompartmentFunc: ClassPages.Compartment
+## AddonCompartmentFuncOnEnter: ClassPages.CompartmentEnter
+## AddonCompartmentFuncOnLeave: ClassPages.CompartmentLeave
+## AllowLoadGameType: camelot, forever
+## Category: Combat
+## X-License: MIT
+## X-Category: Action Bars, Class
+
+# Embedded libraries (BSD / public domain, see Libs/README.md)
+Libs\LibStub\LibStub.lua
+Libs\CallbackHandler-1.0\CallbackHandler-1.0.lua
+Libs\LibActionButton-1.0\LibActionButton-1.0.lua
+
+# Load order = dependency order: locales, core, classes, HUD, talents, UI, modules.
+Locales\enUS.lua
+Locales\deDE.lua
+
+Core\Init.lua
+Core\Util.lua
+Core\Secret.lua
+Core\Events.lua
+Core\API.lua
+Core\DB.lua
+Core\Combat.lua
+Core\Spellbook.lua
+
+Classes\Registry.lua
+Classes\Guide.lua
+Classes\Trainer.lua
+Classes\Hunter.lua
+Classes\HunterPets.lua
+
+# class pages (data only, docs/04-KLASSENSEITEN.md)
+Classes\Data\WARRIOR.lua
+Classes\Data\PALADIN.lua
+Classes\Data\HUNTER.lua
+Classes\Data\ROGUE.lua
+Classes\Data\PRIEST.lua
+Classes\Data\SHAMAN.lua
+Classes\Data\MAGE.lua
+Classes\Data\WARLOCK.lua
+Classes\Data\DRUID.lua
+
+# shared widgets first: the HUD edit mode uses them
+UI\Kit.lua
+
+HUD\Kinds.lua
+HUD\Model.lua
+HUD\Content.lua
+HUD\Highlight.lua
+HUD\PetButton.lua
+HUD\Bars.lua
+HUD\Mover.lua
+HUD\Binder.lua
+HUD\Blizzard.lua
+
+Talents\Model.lua
+Talents\Planner.lua
+Talents\Reader.lua
+Talents\Talents.lua
+
+UI\Window.lua
+UI\TabOverview.lua
+UI\TabTalents.lua
+UI\TabPets.lua
+UI\TabHUD.lua
+UI\TabGuide.lua
+UI\TabTrainer.lua
+UI\Minimap.lua
+
+Modules\Probe.lua
+Modules\Debug.lua

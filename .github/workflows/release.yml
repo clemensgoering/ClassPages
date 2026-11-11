@@ -1,0 +1,35 @@
+name: release
+
+# A pushed tag v* builds the zip with the BigWigs packager, attaches it to a GitHub release and uploads it to
+# CurseForge and Wago when the tokens exist. Tags must be annotated (git tag -a v1.0.0 -m "1.0.0").
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    env:
+      # the packager has used both names over time; set both so either version works
+      CF_API_KEY: ${{ secrets.CF_API_KEY }}
+      CF_API_TOKEN: ${{ secrets.CF_API_KEY }}
+      WAGO_API_TOKEN: ${{ secrets.WAGO_API_TOKEN }}
+      GITHUB_OAUTH: ${{ secrets.GITHUB_TOKEN }}
+      GH_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Lua syntax, lint and tests
+        uses: leafo/gh-actions-lua@v11
+        with:
+          luaVersion: "5.1"
+      - uses: leafo/gh-actions-luarocks@v5
+      - run: luarocks install luacheck && bash tools/check.sh
+      - name: Package and upload
+        uses: BigWigsMods/packager@v2
+        with:
+          args: -w 0

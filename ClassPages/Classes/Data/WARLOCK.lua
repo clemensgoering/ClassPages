@@ -1,0 +1,111 @@
+-- Class data page: Warlock quests/items and professions. Data only (see docs/04-KLASSENSEITEN.md).
+local ADDON, ns = ...
+
+local function e(kind, minLevel, en, de, noteEn, noteDe, conf, x)
+  local t = { kind = kind, name = { enUS = en, deDE = de }, minLevel = minLevel,
+    note = { enUS = noteEn, deDE = noteDe }, confidence = conf }
+  if x then for k, v in pairs(x) do t[k] = v end end
+  return t
+end
+
+ns.Classes:AddPage("WARLOCK", {
+  key = "warlockQuests",
+  title = { enUS = "Quests", deDE = "Quests" },
+  icon = "Interface\\Icons\\INV_Misc_Book_11",
+  order = 40,
+  intro = { enUS = "Demon quests, summon quests and soul shards.",
+            deDE = "Dämonenquests, Beschwörungsquests und Seelensplitter." },
+  sections = {
+    { title = { enUS = "Level 1–20", deDE = "Stufe 1–20" }, entries = {
+      e("quest", 1, "Starter class quests", "Einstiegs-Klassenquests",
+        "Your racial warlock trainer gives the first quests about Shadow Bolt and Corruption.",
+        "Der Hexenmeisterlehrer deiner Rasse vergibt die ersten Quests zu Schattenblitz und Verderbnis.", "B", { tags = { "quest" } }),
+      e("quest", 10, "Voidwalker quest", "Quest für den Leerwandler",
+        "Level 10 class quest that unlocks Summon Voidwalker, a sturdy tank pet.",
+        "Klassenquest auf Stufe 10, die Leerwandler beschwören freischaltet, einen robusten Tank-Dämon.", "B", { tags = { "quest" } }),
+      e("item", 1, "Soul Shard", "Seelensplitter",
+        "Reagent for many summons; they come from Drain Soul, so keep shards in your bag.",
+        "Reagenz für viele Beschwörungen; stammen aus Seelendieb, daher Splitter im Beutel behalten.", "B",
+        { itemID = 6265, tags = { "reagent" } }),
+      e("item", 10, "Bag space for shards", "Taschenplatz für Splitter",
+        "Soul Shards stack to 20; reserve a small bag if possible.",
+        "Seelensplitter stapeln bis 20; wenn möglich einen kleinen Beutel reservieren.", "B"),
+    } },
+    { title = { enUS = "Level 20–40", deDE = "Stufe 20–40" }, entries = {
+      e("quest", 20, "Succubus quest", "Quest für den Sukkubus",
+        "Level 20 class quest that unlocks Summon Succubus and Seduction.",
+        "Klassenquest auf Stufe 20, die Sukkubus beschwören und Verführung freischaltet.", "B", { tags = { "quest" } }),
+      e("quest", 30, "Felhunter quest", "Quest für den Teufelsjäger",
+        "Level 30 class quest that unlocks Summon Felhunter, great against casters.",
+        "Klassenquest auf Stufe 30, die Teufelsjäger beschwören freischaltet, stark gegen Zauberwirker.", "B", { tags = { "quest" } }),
+      e("quest", 20, "Imp and demon training quests", "Quests für Dämonenfertigkeiten",
+        "Short pet quests around the 20s unlock demon abilities.",
+        "Kurze Dämonenquests um Stufe 20 schalten Dämonenfähigkeiten frei.", "C", { tags = { "quest" } }),
+      e("item", 28, "Healthstone and Soulstone", "Gesundheitsstein und Seelenstein",
+        "Create these with shards; Healthstone heals, Soulstone allows a self-rez.",
+        "Aus Splittern herstellen; Gesundheitsstein heilt, Seelenstein erlaubt Selbstwiederbelebung.", "B", { tags = { "reagent" } }),
+      e("item", 30, "Shard farming spots", "Splitterfarm",
+        "Drain Soul on low-level mobs refills your shards fast.",
+        "Seelendieb an schwachen Gegnern füllt die Splitter schnell auf.", "B"),
+    } },
+    { title = { enUS = "Level 40–60", deDE = "Stufe 40–60" }, entries = {
+      e("quest", 40, "Dreadsteed quest", "Quest für das Schreckensross",
+        "Level 40 chain that gives the warlock mount; needs gold and dungeon help.",
+        "Questreihe auf Stufe 40, die das Hexenmeister-Reittier gibt; braucht Gold und Hilfe in Dungeons.", "B", { tags = { "quest" } }),
+      e("quest", 50, "Inferno quest", "Quest für den Höllenbestie",
+        "Level 50 class quest unlocking Ritual of Infernals, a strong summon.",
+        "Klassenquest auf Stufe 50, die Rufen des Infernals freischaltet, eine mächtige Beschwörung.", "B", { tags = { "quest" } }),
+      e("quest", 60, "Doomguard quest", "Quest für den Verdammniswächter",
+        "Level 60 class quest unlocking Ritual of Doom, a rare demon summon.",
+        "Klassenquest auf Stufe 60, die Ritual der Verdammnis freischaltet, eine seltene Dämonenbeschwörung.", "B", { tags = { "quest" } }),
+      e("item", 50, "Infernal Stone", "Infernostein",
+        "Reagent for summoning an Infernal; keep one when you use Rituals.",
+        "Reagenz zum Beschwören eines Infernals; für Rituale einen dabeihalten.", "B", { tags = { "reagent" } }),
+      e("item", 60, "Demonic Figurine", "Dämonenfigur",
+        "Reagent for Ritual of Doom; loot is rare, farm early.",
+        "Reagenz für das Ritual der Verdammnis; die Beute ist selten, früh farmen.", "B", { tags = { "reagent" } }),
+      e("item", 40, "Shadow resist gear", "Schattenwiderstandsausrüstung",
+        "Useful against Shadow-heavy bosses in upper dungeons.",
+        "Nützlich gegen schattenlastige Bosse in hohen Dungeons.", "C"),
+    } },
+  },
+})
+
+ns.Classes:AddPage("WARLOCK", {
+  key = "warlockProfessions",
+  title = { enUS = "Professions", deDE = "Berufe" },
+  icon = "Interface\\Icons\\Trade_BlackSmithing",
+  order = 50,
+  intro = { enUS = "Professions that suit a cloth-wearing warlock.",
+            deDE = "Berufe, die zu einem Hexenmeister in Stoffrüstung passen." },
+  sections = {
+    { title = { enUS = "Recommended", deDE = "Empfohlen" }, entries = {
+      e("profession", 1, "Tailoring", "Schneiderei",
+        "Craft cloth gear and bags; you need lots of space for shards.",
+        "Stoffrüstung und Taschen herstellen; du brauchst viel Platz für Splitter.", "B", { tags = { "profession" } }),
+      e("profession", 1, "Enchanting", "Verzauberkunst",
+        "Disenchant loot and enchant your own gear; pairs with Tailoring.",
+        "Beute entzaubern und eigene Ausrüstung verzaubern; passt zu Schneiderei.", "B", { tags = { "profession" } }),
+      e("profession", 1, "Alchemy", "Alchemie",
+        "Potions and elixirs improve damage and survival.",
+        "Tränke und Elixiere verbessern Schaden und Überleben.", "B", { tags = { "profession" } }),
+      e("profession", 1, "Engineering", "Ingenieurskunst",
+        "Bombs and gadgets add burst while questing.",
+        "Bomben und Gadgets bringen Burst beim Questen.", "B", { tags = { "profession" } }),
+    } },
+    { title = { enUS = "Collect", deDE = "Sammeln" }, entries = {
+      e("item", 1, "Soul Shards", "Seelensplitter",
+        "Keep 10 to 20 for summons and Healthstones.",
+        "10 bis 20 für Beschwörungen und Gesundheitssteine behalten.", "B", { itemID = 6265, tags = { "reagent" } }),
+      e("item", 1, "Cloth", "Stoff",
+        "Linen, wool, silk and mageweave feed Tailoring and gold.",
+        "Leinen, Wolle, Seide und Magiestoff versorgen Schneiderei und Gold.", "B"),
+      e("note", 1, "Wands", "Zauberstäbe",
+        "Wands finish mobs when mana is low; look for upgrades.",
+        "Zauberstäbe beenden Gegner bei wenig Mana; nach Verbesserungen Ausschau halten.", "B", { tags = { "weapon" } }),
+      e("note", 1, "Shadow and stamina gear", "Schattenschaden und Ausdauer",
+        "Stamina boosts Life Tap and survival; keep it on when levelling.",
+        "Ausdauer verbessert Aderlass und Überleben; beim Leveln auf beides achten.", "B"),
+    } },
+  },
+})

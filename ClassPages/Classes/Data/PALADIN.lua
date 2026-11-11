@@ -1,0 +1,110 @@
+-- Class data page: Paladin quests/items and professions. Data only (see docs/04-KLASSENSEITEN.md).
+local ADDON, ns = ...
+
+local function e(kind, minLevel, en, de, noteEn, noteDe, conf, x)
+  local t = { kind = kind, name = { enUS = en, deDE = de }, minLevel = minLevel,
+    note = { enUS = noteEn, deDE = noteDe }, confidence = conf }
+  if x then for k, v in pairs(x) do t[k] = v end end
+  return t
+end
+
+ns.Classes:AddPage("PALADIN", {
+  key = "paladinQuests",
+  title = { enUS = "Quests", deDE = "Quests" },
+  icon = "Interface\\Icons\\INV_Misc_Book_11",
+  order = 40,
+  intro = { enUS = "Paladin class quests, the epic mount chain and the symbols you need for buffs.",
+            deDE = "Paladin-Klassenquests, die Reittierquestreihe und die Symbole, die du für Segen brauchst." },
+  sections = {
+    { title = { enUS = "Level 1–20", deDE = "Stufe 1–20" }, entries = {
+      e("quest", 1, "Starter class quests", "Einstiegs-Klassenquests",
+        "Racial paladin trainers give the first quests that teach Seal and Judgement.",
+        "Die Paladinlehrer deiner Rasse vergeben die ersten Quests zu Siegel und Richturteil.", "B", { tags = { "quest" } }),
+      e("quest", 12, "Redemption quest", "Quest für Erlösung",
+        "Level 12 class quest that teaches Redemption, the paladin resurrection spell.",
+        "Klassenquest auf Stufe 12, die Erlösung lehrt, den Wiederbelebungszauber des Paladins.", "B", { tags = { "quest" } }),
+      e("quest", 20, "Verigan's Fist quest chain", "Questreihe um Veringans Faust",
+        "Around level 20 a chain rewards Verigan's Fist, a solid early weapon.",
+        "Um Stufe 20 belohnt eine Questreihe mit Veringans Faust, einer guten frühen Waffe.", "B",
+        { tags = { "quest", "weapon" } }),
+      e("item", 16, "Symbol of Divinity", "Symbol der Göttlichkeit",
+        "Reagent for Divine Intervention and resurrection spells; buy a small stack from the trainer.",
+        "Reagenz für Göttliches Eingreifen und Wiederbelebung; beim Lehrer einen kleinen Stapel kaufen.", "B",
+        { itemID = 17033, tags = { "reagent" } }),
+    } },
+    { title = { enUS = "Level 20–40", deDE = "Stufe 20–40" }, entries = {
+      e("quest", 20, "Class spell quests", "Quests für Klassenzauber",
+        "Several mid-level spells, such as Blessing upgrades, are gated behind short trainer quests.",
+        "Einige Zauber der mittleren Stufen, etwa Segensverbesserungen, hängen an kurzen Lehrerquests.", "C", { tags = { "quest" } }),
+      e("quest", 30, "Sense Undead and Exorcism line", "Zauber gegen Untote",
+        "Undead-hunting abilities arrive through your trainer; useful in Scarlet Monastery and Stratholme.",
+        "Fähigkeiten gegen Untote erhältst du beim Lehrer; nützlich im Scharlachroten Kloster und Stratholme.", "C"),
+      e("item", 20, "Reagent budget", "Reagenzienvorrat",
+        "Check bag space; Symbols are the only spell reagent you carry until Blessing of Kings.",
+        "Auf Taschenplatz achten; Symbole sind die einzige Reagenz, bis du den Segen der Könige hast.", "B", { tags = { "reagent" } }),
+      e("item", 30, "Libram or shield offhand", "Buchband oder Schild",
+        "Keep a shield for tanking or Holy gear for healing; paladins swap roles often.",
+        "Einen Schild fürs Tanken oder Heilausrüstung behalten; Paladine wechseln oft die Rolle.", "B"),
+    } },
+    { title = { enUS = "Level 40–60", deDE = "Stufe 40–60" }, entries = {
+      e("quest", 40, "Epic mount quest chain", "Questreihe für das Epos-Reittier",
+        "The warhorse chain starts at level 40 with your class trainer; it needs gold and dungeon help.",
+        "Die Schlachtrossquest beginnt auf Stufe 40 und braucht Gold und Hilfe in Dungeons.", "B", { tags = { "quest" } }),
+      e("quest", 40, "Summon Warhorse quest", "Quest für Schlachtross herbeirufen",
+        "Quest at level 40 that gives your class mount without buying a mount.",
+        "Quest auf Stufe 40, die dir das Klassenreittier gibt, ohne ein Reittier zu kaufen.", "B", { tags = { "quest" } }),
+      e("quest", 60, "Charger quest chain", "Questreihe für den Streitross",
+        "Level 60 chain with a demanding dungeon step; gives the paladin epic mount.",
+        "Questreihe auf Stufe 60 mit anspruchsvollem Dungeon-Schritt; gibt das Paladin-Epos-Reittier.", "B", { tags = { "quest" } }),
+      e("item", 52, "Symbol of Kings", "Symbol der Könige",
+        "Reagent for Greater Blessings; stock a stack before raids and dungeons.",
+        "Reagenz für Größere Segen; vor Raids und Dungeons einen Stapel mitnehmen.", "B",
+        { itemID = 21177, tags = { "reagent" } }),
+      e("item", 50, "Holy resistance and spell gear", "Heilige Ausrüstung",
+        "Spell power and mana gear for Holy; collect it from upper dungeons.",
+        "Zaubermacht- und Manaausrüstung für Heilig; aus hohen Dungeons sammeln.", "C"),
+      e("item", 48, "Mana potions", "Manatränke",
+        "Healers drink often; keep Greater Mana Potions for long fights.",
+        "Heiler trinken oft; Große Manatränke für lange Kämpfe bereithalten.", "B"),
+    } },
+  },
+})
+
+ns.Classes:AddPage("PALADIN", {
+  key = "paladinProfessions",
+  title = { enUS = "Professions", deDE = "Berufe" },
+  icon = "Interface\\Icons\\Trade_BlackSmithing",
+  order = 50,
+  intro = { enUS = "Professions that suit a plate-wearing paladin.",
+            deDE = "Berufe, die zu einem Paladin in Plattenrüstung passen." },
+  sections = {
+    { title = { enUS = "Recommended", deDE = "Empfohlen" }, entries = {
+      e("profession", 1, "Blacksmithing", "Schmiedekunst",
+        "Craft plate gear and weapons; Paladins use plate and heavy weapons.",
+        "Plattenrüstung und Waffen herstellen; Paladine tragen Platte und schwere Waffen.", "B", { tags = { "profession" } }),
+      e("profession", 1, "Mining", "Bergbau",
+        "Feeds Blacksmithing and brings steady gold while you quest.",
+        "Versorgt die Schmiedekunst und bringt beim Questen stetig Gold.", "B", { tags = { "profession" } }),
+      e("profession", 1, "Enchanting", "Verzauberkunst",
+        "Disenchant spare gear and buff your own weapon and armor.",
+        "Überschüssige Ausrüstung entzaubern und eigene Waffe und Rüstung verbessern.", "B", { tags = { "profession" } }),
+      e("profession", 1, "First Aid", "Erste Hilfe",
+        "Free healing between fights; useful when mana is low.",
+        "Kostenlose Heilung zwischen Kämpfen; hilfreich bei wenig Mana.", "B", { tags = { "profession" } }),
+    } },
+    { title = { enUS = "Collect", deDE = "Sammeln" }, entries = {
+      e("item", 1, "Symbol of Divinity and Kings", "Symbole der Göttlichkeit und der Könige",
+        "Keep a small stack of reagents; never run out before a group.",
+        "Einen kleinen Vorrat an Reagenzien halten; vor einer Gruppe nie leer sein.", "B", { tags = { "reagent" } }),
+      e("item", 1, "Intellect and spirit gear", "Intelligenz und Willenskraft",
+        "Holy specs scale with these; save drops even if you level Retribution.",
+        "Heilig skaliert damit; Drops aufheben, auch wenn du als Vergeltung levelst.", "B"),
+      e("item", 1, "Healing potions", "Heiltränke",
+        "Paladins heal themselves, but potions are safe backup in tough pulls.",
+        "Paladine heilen sich selbst, doch Tränke sind in harten Pulls ein sicherer Notnagel.", "B"),
+      e("note", 1, "Cloth and ore for crafting", "Stoff und Erz für Herstellung",
+        "Collect whatever your professions use; vendor the rest.",
+        "Sammle, was deine Berufe brauchen; den Rest verkaufen.", "B"),
+    } },
+  },
+})

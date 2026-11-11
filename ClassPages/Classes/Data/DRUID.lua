@@ -1,0 +1,112 @@
+-- Class data page: Druid quests/items and professions. Data only (see docs/04-KLASSENSEITEN.md).
+local ADDON, ns = ...
+
+local function e(kind, minLevel, en, de, noteEn, noteDe, conf, x)
+  local t = { kind = kind, name = { enUS = en, deDE = de }, minLevel = minLevel,
+    note = { enUS = noteEn, deDE = noteDe }, confidence = conf }
+  if x then for k, v in pairs(x) do t[k] = v end end
+  return t
+end
+
+ns.Classes:AddPage("DRUID", {
+  key = "druidQuests",
+  title = { enUS = "Quests", deDE = "Quests" },
+  icon = "Interface\\Icons\\INV_Misc_Book_11",
+  order = 40,
+  intro = { enUS = "Form quests, reagents and notable level-60 quests.",
+            deDE = "Gestaltquests, Reagenzien und wichtige Quests auf Stufe 60." },
+  sections = {
+    { title = { enUS = "Level 1–20", deDE = "Stufe 1–20" }, entries = {
+      e("quest", 1, "Starter class quests", "Einstiegs-Klassenquests",
+        "Your racial druid trainer gives the first quests about Wrath and Moonfire.",
+        "Der Druidenlehrer deiner Rasse vergibt die ersten Quests zu Zorn und Mondfeuer.", "B", { tags = { "quest" } }),
+      e("quest", 10, "Bear Form quest", "Quest für die Bärengestalt",
+        "Level 10 quest that unlocks Bear Form, your tanking shape.",
+        "Quest auf Stufe 10, die die Bärengestalt freischaltet, deine Tankform.", "B", { tags = { "quest" } }),
+      e("quest", 16, "Aquatic Form quest", "Quest für die Wassergestalt",
+        "Level 16 quest that unlocks swim speed and underwater breathing.",
+        "Quest auf Stufe 16, die Schwimmtempo und Unterwasseratmung freischaltet.", "B", { tags = { "quest" } }),
+      e("item", 1, "Wild Berries", "Wildbeeren",
+        "Reagent for Thorns and Gift of the Wild; common drop, keep a small stack.",
+        "Reagenz für Dornen und Gabe der Wildnis; häufiger Drop, einen kleinen Vorrat behalten.", "B", { tags = { "reagent" } }),
+    } },
+    { title = { enUS = "Level 20–40", deDE = "Stufe 20–40" }, entries = {
+      e("quest", 20, "Cat Form quest", "Quest für die Katzengestalt",
+        "Level 20 quest that unlocks Cat Form, your melee damage shape.",
+        "Quest auf Stufe 20, die die Katzengestalt freischaltet, deine Nahkampfform.", "B", { tags = { "quest" } }),
+      e("quest", 30, "Travel Form quest", "Quest für die Reisegestalt",
+        "Level 30 quest that gives Travel Form, a mount-free speed boost.",
+        "Quest auf Stufe 30, die die Reisegestalt gibt, einen Tempobonus ohne Reittier.", "B", { tags = { "quest" } }),
+      e("item", 20, "Maple Seed", "Ahornsamen",
+        "Reagent for Rebirth and group buffs; buy from the druid trainer.",
+        "Reagenz für Wiedergeburt und Gruppensegen; beim Druidenlehrer kaufen.", "B",
+        { itemID = 17034, tags = { "reagent" } }),
+      e("item", 30, "Wild Thornroot", "Wilder Dornwurz",
+        "Reagent for Gift of the Wild and Thorns; a small stack is enough.",
+        "Reagenz für Gabe der Wildnis und Dornen; ein kleiner Vorrat reicht.", "B",
+        { itemID = 17026, tags = { "reagent" } }),
+      e("quest", 30, "Moonglade trainer quests", "Quests im Mondlichtung",
+        "Several druid quests send you to Moonglade for form training.",
+        "Mehrere Druidenquests schicken dich zur Mondlichtung für Gestalttraining.", "B", { tags = { "quest" } }),
+    } },
+    { title = { enUS = "Level 40–60", deDE = "Stufe 40–60" }, entries = {
+      e("quest", 40, "Higher form quests", "Quests für höhere Gestalten",
+        "Higher-level quests give extra form upgrades and utility.",
+        "Quests hoher Stufen geben zusätzliche Gestaltverbesserungen und Hilfsmittel.", "C", { tags = { "quest" } }),
+      e("item", 40, "Ironwood Seed", "Eisenholzsamen",
+        "Higher-rank reagent for Rebirth; keep several for raids.",
+        "Reagenz höherer Stufe für Wiedergeburt; mehrere für Raids behalten.", "B", { tags = { "reagent" } }),
+      e("quest", 60, "Dungeon set and class quest chains", "Dungeon-Set und Klassenquestreihen",
+        "Level 60 chains reward gear that suits balance, feral and restoration.",
+        "Questreihen auf Stufe 60 belohnen mit Ausrüstung für Gleichgewicht, Wilder Kampf und Wiederherstellung.", "C", { tags = { "quest" } }),
+      e("item", 50, "Mana and healing potions", "Mana- und Heiltränke",
+        "Potions help when you heal or tank in dungeons.",
+        "Tränke helfen, wenn du in Dungeons heilst oder tankst.", "B"),
+      e("note", 45, "Nature resistance gear", "Naturwiderstandsausrüstung",
+        "Useful for druid specs against nature bosses.",
+        "Nützlich für Druidenspezialisierungen gegen Naturbosse.", "C"),
+      e("note", 50, "Weapon and armor upgrades", "Waffen- und Rüstungsverbesserungen",
+        "Druids wear leather; staves and maces are key weapons.",
+        "Druiden tragen Leder; Stäbe und Streitkolben sind die wichtigsten Waffen.", "B", { tags = { "weapon" } }),
+    } },
+  },
+})
+
+ns.Classes:AddPage("DRUID", {
+  key = "druidProfessions",
+  title = { enUS = "Professions", deDE = "Berufe" },
+  icon = "Interface\\Icons\\Trade_BlackSmithing",
+  order = 50,
+  intro = { enUS = "Professions that suit a leather-wearing druid.",
+            deDE = "Berufe, die zu einem Druiden in Lederrüstung passen." },
+  sections = {
+    { title = { enUS = "Recommended", deDE = "Empfohlen" }, entries = {
+      e("profession", 1, "Herbalism", "Kräuterkunde",
+        "Pairs with Alchemy and fits the druid theme; steady gold from herbs.",
+        "Passt zu Alchemie und zum Druidenthema; stetiges Gold durch Kräuter.", "B", { tags = { "profession" } }),
+      e("profession", 1, "Alchemy", "Alchemie",
+        "Potions and elixirs strengthen any druid role.",
+        "Tränke und Elixiere stärken jede Druidenrolle.", "B", { tags = { "profession" } }),
+      e("profession", 1, "Leatherworking", "Lederverarbeitung",
+        "Craft leather armor and kits; combine with Skinning.",
+        "Lederrüstung und Rüstungsflicken herstellen; mit Kürschnerei kombinieren.", "B", { tags = { "profession" } }),
+      e("profession", 1, "Skinning", "Kürschnerei",
+        "Skin beasts for leather and gold; pairs with Leatherworking.",
+        "Tiere häuten für Leder und Gold; passt zu Lederverarbeitung.", "B", { tags = { "profession" } }),
+    } },
+    { title = { enUS = "Collect", deDE = "Sammeln" }, entries = {
+      e("item", 1, "Maple Seed", "Ahornsamen",
+        "Buy a stack at the druid trainer for Rebirth.",
+        "Einen Vorrat beim Druidenlehrer für Wiedergeburt kaufen.", "B", { itemID = 17034, tags = { "reagent" } }),
+      e("item", 1, "Wild Berries", "Wildbeeren",
+        "Collect berries for Thorns; they drop frequently.",
+        "Beeren für Dornen sammeln; sie fallen häufig.", "B", { tags = { "reagent" } }),
+      e("item", 1, "Herbs", "Kräuter",
+        "Flowers and roots sell well and feed Alchemy.",
+        "Blumen und Wurzeln verkaufen sich gut und versorgen Alchemie.", "B"),
+      e("note", 1, "Leather gear with versatile stats", "Lederausrüstung mit vielseitigen Werten",
+        "Druids switch roles; keep good agility and intellect leather.",
+        "Druiden wechseln Rollen; gutes Leder mit Beweglichkeit und Intelligenz aufheben.", "B"),
+    } },
+  },
+})

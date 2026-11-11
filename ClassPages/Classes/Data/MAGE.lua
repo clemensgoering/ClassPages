@@ -1,0 +1,110 @@
+-- Class data page: Mage quests/items and professions. Data only (see docs/04-KLASSENSEITEN.md).
+local ADDON, ns = ...
+
+local function e(kind, minLevel, en, de, noteEn, noteDe, conf, x)
+  local t = { kind = kind, name = { enUS = en, deDE = de }, minLevel = minLevel,
+    note = { enUS = noteEn, deDE = noteDe }, confidence = conf }
+  if x then for k, v in pairs(x) do t[k] = v end end
+  return t
+end
+
+ns.Classes:AddPage("MAGE", {
+  key = "mageQuests",
+  title = { enUS = "Quests", deDE = "Quests" },
+  icon = "Interface\\Icons\\INV_Misc_Book_11",
+  order = 40,
+  intro = { enUS = "Mage class quests, teleport and portal reagents, and key consumables.",
+            deDE = "Magier-Klassenquests, Teleport- und Portalreagenzien sowie wichtige Verbrauchsgüter." },
+  sections = {
+    { title = { enUS = "Level 1–20", deDE = "Stufe 1–20" }, entries = {
+      e("quest", 1, "Starter class quests", "Einstiegs-Klassenquests",
+        "Your racial mage trainer gives the first quests about Frostbolt and Arcane Missiles.",
+        "Der Magierlehrer deiner Rasse vergibt die ersten Quests zu Frostblitz und Arkane Geschosse.", "B", { tags = { "quest" } }),
+      e("item", 1, "Conjured food and water", "Herbeigezaubertes Essen und Wasser",
+        "Conjure Water and Food are your sustain; keep a stack for yourself and your party.",
+        "Wasser und Essen herbeizaubern sind dein Nachschub; einen Vorrat für dich und die Gruppe halten.", "B"),
+      e("quest", 12, "Mage spell quests", "Quests für Magierzauber",
+        "Short trainer quests around the 10s unlock early spell ranks and abilities.",
+        "Kurze Lehrerquests um Stufe 10 schalten frühe Zauberstufen und Fähigkeiten frei.", "C", { tags = { "quest" } }),
+      e("item", 1, "Wand", "Zauberstab",
+        "Mages can use wands to save mana; keep one equipped.",
+        "Magier können Zauberstäbe nutzen, um Mana zu sparen; immer einen tragen.", "B", { tags = { "weapon" } }),
+    } },
+    { title = { enUS = "Level 20–40", deDE = "Stufe 20–40" }, entries = {
+      e("item", 20, "Rune of Teleportation", "Teleportationsrune",
+        "Reagent for city teleports; buy from the mage vendor in your capital.",
+        "Reagenz für Stadtteleports; beim Magierhändler deiner Hauptstadt kaufen.", "B",
+        { itemID = 17031, tags = { "reagent" } }),
+      e("item", 20, "Arcane Powder", "Arkanes Pulver",
+        "Reagent for Arcane Brilliance and Arcane Intellect; carry a stack.",
+        "Reagenz für Arkane Brillanz und Arkane Intelligenz; einen Stapel mitführen.", "B",
+        { itemID = 17020, tags = { "reagent" } }),
+      e("quest", 30, "Teleport and Polymorph quests", "Quests für Teleport und Verwandlung",
+        "Mid-level quests unlock key spells such as teleports in your faction cities.",
+        "Quests der mittleren Stufen schalten wichtige Zauber wie Teleports in deine Fraktionsstädte frei.", "C", { tags = { "quest" } }),
+      e("item", 24, "Mana Gem", "Manastein",
+        "Conjured gem that restores mana; make one before every dungeon.",
+        "Herbeigezauberter Stein, der Mana wiederherstellt; vor jedem Dungeon einen herstellen.", "B"),
+    } },
+    { title = { enUS = "Level 40–60", deDE = "Stufe 40–60" }, entries = {
+      e("quest", 40, "Mage mount-free travel quests", "Quests für schnelle Reisen",
+        "Higher teleports and Portals become available as you level.",
+        "Höhere Teleports und Portale werden beim Leveln verfügbar.", "C", { tags = { "quest" } }),
+      e("item", 40, "Rune of Portals", "Portalrune",
+        "Reagent for Portals; stock it for group travel and gold.",
+        "Reagenz für Portale; für Gruppenreisen und Gold mitführen.", "B",
+        { itemID = 17032, tags = { "reagent" } }),
+      e("item", 56, "Reagent budget", "Reagenzienvorrat",
+        "Mages rarely need extra reagents, but Arcane Powder is a must for Brilliance.",
+        "Magier brauchen selten weitere Reagenzien, aber Arkanes Pulver ist für Brillanz Pflicht.", "C"),
+      e("quest", 60, "Dungeon set and class quest chains", "Dungeon-Set und Klassenquestreihen",
+        "Level 60 chains reward gear; mages use the Blackrock dungeon sets as a first tier.",
+        "Questreihen auf Stufe 60 belohnen mit Ausrüstung; Magier nutzen die Dungeon-Sets als erste Stufe.", "C", { tags = { "quest" } }),
+      e("item", 50, "Mana potions", "Manatränke",
+        "Keep Greater Mana Potions for hard dungeons and raids.",
+        "Große Manatränke für schwere Dungeons und Raids bereithalten.", "B"),
+      e("note", 52, "Frost resistance and shadow gear", "Frost- und Schattenausrüstung",
+        "Useful for AoE farming; collect gear that raises spell hit.",
+        "Nützlich beim AoE-Farmen; Ausrüstung mit Zaubertreffer sammeln.", "C"),
+    } },
+  },
+})
+
+ns.Classes:AddPage("MAGE", {
+  key = "mageProfessions",
+  title = { enUS = "Professions", deDE = "Berufe" },
+  icon = "Interface\\Icons\\Trade_BlackSmithing",
+  order = 50,
+  intro = { enUS = "Professions that suit a cloth-wearing mage.",
+            deDE = "Berufe, die zu einem Magier in Stoffrüstung passen." },
+  sections = {
+    { title = { enUS = "Recommended", deDE = "Empfohlen" }, entries = {
+      e("profession", 1, "Tailoring", "Schneiderei",
+        "Craft your own cloth gear and bags; you farm cloth naturally.",
+        "Eigene Stoffrüstung und Taschen herstellen; Stoff fällt beim Farmen von allein an.", "B", { tags = { "profession" } }),
+      e("profession", 1, "Enchanting", "Verzauberkunst",
+        "Disenchant loot and enchant your own gear; pairs perfectly with Tailoring.",
+        "Beute entzaubern und eigene Ausrüstung verzaubern; passt perfekt zu Schneiderei.", "B", { tags = { "profession" } }),
+      e("profession", 1, "Alchemy", "Alchemie",
+        "Mana potions and elixirs improve dungeon runs.",
+        "Manatränke und Elixiere verbessern Dungeongänge.", "B", { tags = { "profession" } }),
+      e("profession", 1, "Engineering", "Ingenieurskunst",
+        "Burst and utility gadgets help mages; good for escapes.",
+        "Burst und nützliche Gadgets helfen Magiern; gut zur Flucht.", "B", { tags = { "profession" } }),
+    } },
+    { title = { enUS = "Collect", deDE = "Sammeln" }, entries = {
+      e("item", 1, "Cloth", "Stoff",
+        "Wool, silk, mageweave and runecloth feed Tailoring and gold.",
+        "Wolle, Seide, Magiestoff und Runenstoff versorgen Schneiderei und Gold.", "B"),
+      e("item", 1, "Rune of Teleportation", "Teleportationsrune",
+        "Keep a few for emergency travel; they weigh almost nothing.",
+        "Ein paar für Notfallreisen behalten; sie wiegen fast nichts.", "B", { itemID = 17031, tags = { "reagent" } }),
+      e("item", 1, "Arcane Powder", "Arkanes Pulver",
+        "Keep a stack; Brilliance is only possible with it.",
+        "Einen Vorrat behalten; Brillanz geht nur damit.", "B", { itemID = 17020, tags = { "reagent" } }),
+      e("note", 1, "Spell power and intellect gear", "Zaubermacht und Intelligenz",
+        "Cloth with intellect and spirit helps all mage specs.",
+        "Stoff mit Intelligenz und Willenskraft hilft allen Magiespezialisierungen.", "B"),
+    } },
+  },
+})

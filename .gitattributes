@@ -1,0 +1,7 @@
+# Normalise line endings: LF in the repo, LF in the working copy (the WoW client reads both).
+* text=auto eol=lf
+*.ps1 text eol=crlf
+*.png binary
+*.tga binary
+*.blp binary
+*.zip binary

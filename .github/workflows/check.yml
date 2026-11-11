@@ -1,0 +1,20 @@
+name: check
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leafo/gh-actions-lua@v11
+        with:
+          luaVersion: "5.1"
+      - uses: leafo/gh-actions-luarocks@v5
+      - name: Install luacheck
+        run: luarocks install luacheck
+      - name: Syntax, lint, tests
+        run: bash tools/check.sh

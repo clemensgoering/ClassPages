@@ -1,0 +1,20 @@
+package-as: ClassPages
+
+# The addon lives in ClassPages/ inside the repo; the packager moves it to the zip root so the zip contains a single
+# root folder named like the TOC (CurseForge requirement). Key = source path inside the package dir, value = destination.
+move-folders:
+  ClassPages/ClassPages: ClassPages
+
+# Paths relative to the working copy. Dot-files are always ignored.
+ignore:
+  - docs
+  - tools
+  - README.md
+  - CHANGELOG.md
+  - CLAUDE.md
+
+manual-changelog:
+  filename: CHANGELOG.md
+  markup-type: markdown
+
+enable-nolib-creation: no
